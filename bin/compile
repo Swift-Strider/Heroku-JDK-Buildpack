@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# fail fast
+set -e
+
+apt-get install openjdk-8-jre
