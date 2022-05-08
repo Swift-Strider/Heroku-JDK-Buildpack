@@ -3,4 +3,10 @@
 # fail fast
 set -e
 
-apt-get install openjdk-8-jre
+curl https://download.java.net/java/GA/jdk18.0.1.1/65ae32619e2f40f3a9af3af1851d6e19/2/GPL/openjdk-18.0.1.1_linux-x64_bin.tar.gz --output jdk.tar.gz
+
+tar -xzf jdk.tar.gz
+rm jdk.tar.gz
+mv jdk-18.0.1.1 jdk
+
+echo -n "Downloaded JDK to directory: " && pwd
