@@ -3,10 +3,21 @@
 # fail fast
 set -e
 
-curl https://download.java.net/java/GA/jdk18.0.1.1/65ae32619e2f40f3a9af3af1851d6e19/2/GPL/openjdk-18.0.1.1_linux-x64_bin.tar.gz --output jdk.tar.gz
+# Setup Script Variables
+BUILD_DIR=${1:-}
+JDK_INSTALL_PATH="$BUILD_DIR/.jdk"
 
+# Setup Environment
+export PATH="$JDK_INSTALL_PATH/bin":$PATH
+mkdir -p JDK_INSTALL_PATH
+
+echo "Downloading JDK..."
+curl -sSf https://download.java.net/java/GA/jdk18.0.1.1/65ae32619e2f40f3a9af3af1851d6e19/2/GPL/openjdk-18.0.1.1_linux-x64_bin.tar.gz --output jdk.tar.gz
+
+echo "Decompressing JDK artifacts..."
 tar -xzf jdk.tar.gz
 rm jdk.tar.gz
-mv jdk-18.0.1.1 jdk
 
-echo -n "Downloaded JDK to directory: " && pwd
+mv jdk-18.0.1.1 "$JDK_INSTALL_PATH"
+
+echo "Successfully Installed the JDK"
